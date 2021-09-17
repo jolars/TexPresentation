@@ -1,0 +1,148 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode,pdfusetitle}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+
+\documentclass[10pt,ignorenonframetext]{beamer}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath,mathtools,amsthm}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{textcomp} % provide euro and other symbols
+
+\usepackage{pgfpages}
+
+% prevent slide breaks in the middle of a paragraph
+\widowpenalties 1 10000
+\raggedbottom
+
+% redefine part, section, and subsection headers
+\raggedbottom
+\setbeamertemplate{part page}{
+ \centering
+ \begin{beamercolorbox}[sep=16pt,center]{part title}
+    \usebeamerfont{part title}\insertpart\par
+ \end{beamercolorbox}
+}
+\setbeamertemplate{section page}{
+ \centering
+ \begin{beamercolorbox}[sep=12pt,center]{part title}
+    \usebeamerfont{section title}\insertsection\par
+ \end{beamercolorbox}
+}
+\setbeamertemplate{subsection page}{
+ \centering
+ \begin{beamercolorbox}[sep=8pt,center]{part title}
+    \usebeamerfont{subsection title}\insertsubsection\par
+ \end{beamercolorbox}
+}
+
+\AtBeginPart{\frame{\partpage}}
+\AtBeginSection{\ifbibliography\else\frame{\sectionpage}\fi}
+\AtBeginSubsection{\frame{\subsectionpage}}
+
+% beamer configuration
+\usecolortheme{dove}
+\usefonttheme{professionalfonts}
+\usefonttheme{structurebold}
+\setbeamertemplate{footline}[frame number]
+\setbeamertemplate{caption}[numbered]
+\setbeamertemplate{caption label separator}{: }
+\setbeamercolor{caption name}{fg=normal text.fg}
+\setbeamertemplate{frametitle}{\begin{centering}\insertframetitle\par\end{centering}}
+\setbeamertemplate{itemize item}{$\bullet$}
+%\setbeamertemplate{itemize item}[circle]
+\setbeamertemplate{itemize subitem}{$\circ$}
+\setbeamertemplate{itemize subsubitem}{\textendash}
+\setbeamerfont{frametitle}{size=\large}
+\setbeamertemplate{headline}{\vskip5ex}
+\beamertemplatenavigationsymbolsempty
+%\setlength{\parskip}{1em} % add paragraph spacing
+
+% Use upquote if available, for straight quotes in verbatim environments
+\usepackage{upquote}
+\usepackage[]{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+
+\usepackage{xcolor}
+\usepackage{xurl} % add URL line breaks if available
+\usepackage{bookmark}
+\usepackage{hyperref}
+\hypersetup{
+  colorlinks = true,
+  linkcolor  = Maroon,
+  filecolor  = Maroon,
+  citecolor  = Blue,
+  urlcolor   = Blue
+}
+
+% tikz and pgfplots stuff
+\usepackage{tikz}
+\usetikzlibrary{arrows,shapes,positioning,intersections}
+\usepackage{pgfplots}
+\usepgfplotslibrary{external,colormaps}
+\pgfplotsset{width=7cm,compat=1.11}
+%\tikzexternalize
+
+\urlstyle{same} % disable monospaced font for URLs
+\newif\ifbibliography
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+
+%\usepackage{subfig}
+\usepackage{subcaption}
+\usepackage{algorithm,algpseudocode}
+\usepackage{booktabs}
+
+% operators
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
+\DeclareMathOperator{\E}{\text{E}}
+\DeclareMathOperator{\var}{var}
+\DeclareMathOperator{\cov}{cov}
+\DeclareMathOperator{\sign}{sign}
+\DeclareMathOperator{\card}{card}
+\DeclareMathOperator{\cumsum}{cumsum}
+\DeclareMathOperator*{\prox}{prox}
+
+% macros
+{% raw %}
+\newcommand{\pkg}[1]{\textsf{#1}}
+\renewcommand{\vec}{\vectorsym}
+\newcommand{\mat}{\matrixsym}
+\newcommand{\du}{\mathrm{d}}
+{% endraw %}
+
+% biblatex
+\usepackage[citestyle=authoryear]{biblatex}
+\addbibresource{references.bib}
+
+% title block
+\title{{'{' + cookiecutter.title + '}'}}
+\subtitle{{'{' + cookiecutter.subtitle + '}'}}
+
+{%- if cookiecutter.single_author == "yes" %}
+\author{{'{' + cookiecutter.author + '}'}}
+\institute{{'{' + cookiecutter.affiliation + '}'}}
+
+{%- elif cookiecutter.single_author == "no" %}
+\author[shortname]{{'{' + cookiecutter.author + '\\inst{1}}'}}
+\institute[shortinst]{
+  \inst{1}{{'{' + cookiecutter.affiliation + '}' }}
+}
+
+{%- endif %}
+\date{\today}
+\titlegraphic{\includegraphics{figures/logo.pdf}}
+
+\begin{document}
+\frame[noframenumbering,plain]{\titlepage}
+
+
+
+% \begin{frame}[allowframebreaks]{References}
+%   \bibliographytrue
+%   \printbibliography[heading=none]
+% \end{frame}
+
+\end{document}
